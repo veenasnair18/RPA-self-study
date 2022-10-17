@@ -1,0 +1,123 @@
+﻿<process name="loop100" version="1.0" bpversion="6.10.1.35171" narrative="Calculator function&#xD;&#xA;" byrefcollection="true" preferredid="20edce97-b530-4611-9020-c843d3e4e857">
+  <view>
+    <camerax>0</camerax>
+    <cameray>0</cameray>
+    <zoom version="2">1.25</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <stage stageid="1946fdcc-dce9-4f79-ad6e-b4120b2a5d91" name="loop100" type="SubSheetInfo">
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="cd5ec170-2b12-410e-a55c-3a0ba5f81a8d" name="Start" type="Start">
+    <display x="30" y="-255" />
+    <onsuccess>c3eb7c1c-77bd-4026-a452-5c2d41c00098</onsuccess>
+  </stage>
+  <stage stageid="d93b017a-ff32-48d4-bf4a-8de2e52594cc" name="End" type="End">
+    <display x="30" y="315" />
+  </stage>
+  <stage stageid="c3eb7c1c-77bd-4026-a452-5c2d41c00098" name="MS Excel VBO::Create Instance" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="30" y="-210" />
+    <inputs>
+      <input type="flag" name="Enable Events" friendlyname="Enable Events" narrative="Flag to indicate that events should be enabled / disabled on the attached instance - defaulted to True" expr="False" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" friendlyname="handle" narrative="An integer which can be used to identify the created instance in subsequent actions" stage="handle" />
+    </outputs>
+    <onsuccess>8f0fed9b-c824-4ad9-bae2-2b1f9d18640d</onsuccess>
+    <resource object="MS Excel VBO" action="Create Instance" />
+  </stage>
+  <stage stageid="8f0fed9b-c824-4ad9-bae2-2b1f9d18640d" name="MS Excel VBO::Open Workbook" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="30" y="-150" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" friendlyname="File name" narrative="The path and name of the file which should be opened." expr="&quot;C:\Users\YP795PZ\Downloads\Task4.xlsx&quot;" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="Excel" />
+    </outputs>
+    <onsuccess>436931d9-ec5d-48b1-96fc-db9660a3ea92</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="86c8d082-53c4-438b-aee0-d9e6a21dac54" name="MS Excel VBO::Close Instance" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="30" y="270" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance to be closed. Zero indicates the currently active instance." expr="[handle]" />
+      <input type="flag" name="Save Changes" friendlyname="Save Changes" narrative="True to save the changes to the open workbooks on the instance, False to discard any changes. Default is False." expr="True" />
+    </inputs>
+    <onsuccess>d93b017a-ff32-48d4-bf4a-8de2e52594cc</onsuccess>
+    <resource object="MS Excel VBO" action="Close Instance" />
+  </stage>
+  <stage stageid="e866d6bc-c982-401f-a69b-465d267f5f73" name="handle" type="Data">
+    <display x="-270" y="45" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="49ba7562-cb8b-439b-89d9-15635833ab8f" name="MS Excel VBO::Set Cell Value" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="30" y="-30" />
+    <inputs>
+      <input type="text" name="Cell Reference" friendlyname="Cell Reference" narrative="The reference on the speficied sheet identifying the cell which should be set." expr="&quot;B&quot;&amp;[counter]" />
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required cell value should be set. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Value" friendlyname="Value" narrative="The value to which the specified cell should be set." expr="[counter]&amp;&quot; &quot;" />
+    </inputs>
+    <onsuccess>a8995f6e-c1e1-4e16-9f2d-595bd4249a56</onsuccess>
+    <resource object="MS Excel VBO" action="Set Cell Value" />
+  </stage>
+  <stage stageid="da560419-74af-45c6-bdb4-1e729b7e2318" name="counter" type="Data">
+    <display x="-330" y="45" />
+    <datatype>number</datatype>
+    <initialvalue>1</initialvalue>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="888719a9-75e0-4fb9-8316-e3af8ccb119f" name="Excel" type="Data">
+    <display x="-300" y="-15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="532e7085-e028-4c02-bf3e-ffbd1d639874" name="hundred" type="Collection">
+    <display x="-375" y="105" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="436931d9-ec5d-48b1-96fc-db9660a3ea92" name="MS Excel VBO::Show" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="30" y="-105" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance which should have its window displayed. The default of zero indicates the currently active instance." expr="[handle]" />
+    </inputs>
+    <onsuccess>49ba7562-cb8b-439b-89d9-15635833ab8f</onsuccess>
+    <resource object="MS Excel VBO" action="Show" />
+  </stage>
+  <stage stageid="a8995f6e-c1e1-4e16-9f2d-595bd4249a56" name="Calc1" type="Calculation">
+    <loginhibit onsuccess="true" />
+    <display x="30" y="30" />
+    <onsuccess>c90bc77b-352e-45a8-a6d6-7a8f2cd29159</onsuccess>
+    <calculation expression="[counter]+1" stage="counter" />
+  </stage>
+  <stage stageid="c90bc77b-352e-45a8-a6d6-7a8f2cd29159" name="Less than or equal to 100" type="Decision">
+    <display x="30" y="105" />
+    <decision expression="[counter] &lt;= 100" />
+    <ontrue>2061fa0b-720f-404a-b6ce-540cbacf5bb6</ontrue>
+    <onfalse>86c8d082-53c4-438b-aee0-d9e6a21dac54</onfalse>
+  </stage>
+  <stage stageid="2061fa0b-720f-404a-b6ce-540cbacf5bb6" name="Anchor1" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="135" y="105" w="10" h="10" />
+    <onsuccess>4acb4517-df42-48b9-9d44-ff1692fd4eaa</onsuccess>
+  </stage>
+  <stage stageid="4acb4517-df42-48b9-9d44-ff1692fd4eaa" name="Anchor2" type="Anchor">
+    <loginhibit onsuccess="true" />
+    <display x="135" y="-30" w="10" h="10" />
+    <onsuccess>49ba7562-cb8b-439b-89d9-15635833ab8f</onsuccess>
+  </stage>
+</process>
